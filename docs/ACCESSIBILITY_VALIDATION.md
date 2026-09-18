@@ -51,11 +51,11 @@
 
 | Step | Action | Expected | Result | Note |
 |---|---|---|---|---|
-| A-1 | `/login`에서 Tab 이동 | 처음 화면 링크 → 로그인 방법 → 회원가입/PIN 로그인 순으로 자연스럽게 이동 | TODO | |
+| A-1 | `/login`에서 Tab 이동 | 처음 화면 링크 → 로그인 방법 → 회원가입/PIN 로그인 순으로 자연스럽게 이동 | PASS | 사용자 직접 확인 |
 | A-2 | PIN으로 로그인에 focus 후 Enter | `/login/pin`으로 이동 | TODO | |
 | A-3 | Tab 이동 | 전화번호 입력 → PIN 입력 → 로그인 버튼 순서 | TODO | |
-| A-4 | 전화번호 없이 제출 | 전화번호 입력칸으로 focus 이동 | TODO | |
-| A-5 | 잘못된 PIN 형식 제출 | PIN 입력칸으로 focus 이동 | TODO | |
+| A-4 | 전화번호 없이 제출 | 전화번호 입력칸으로 focus 이동 | PASS | 사용자 직접 확인 |
+| A-5 | 잘못된 PIN 형식 제출 | PIN 입력칸으로 focus 이동 | PASS | 사용자 직접 확인 |
 | A-6 | 일반 오류 발생 시 | 오류 요약 영역으로 focus 이동 | TODO | |
 | A-7 | Shift+Tab | 역방향 focus 이동이 끊기지 않음 | TODO | |
 
@@ -82,10 +82,10 @@
 
 | Step | Action | Expected | Result | Note |
 |---|---|---|---|---|
-| B-1 | `/balance` 진입 | 뒤로가기 링크부터 focus 가능 | TODO | |
-| B-2 | Tab 이동 | 계좌 select → 잔액 확인 버튼 순으로 이동 | TODO | |
-| B-3 | select에서 화살표 키 사용 | 다른 계좌를 선택할 수 있음 | TODO | |
-| B-4 | Enter/Space로 잔액 조회 실행 | 마우스 없이 실행 가능 | TODO | |
+| B-1 | `/balance` 진입 | 뒤로가기 링크부터 focus 가능 | PASS* | 잔액조회 keyboard-only 흐름 정상으로 사용자 확인 |
+| B-2 | Tab 이동 | 계좌 select → 잔액 확인 버튼 순으로 이동 | PASS* | 잔액조회 keyboard-only 흐름 정상으로 사용자 확인 |
+| B-3 | select에서 화살표 키 사용 | 다른 계좌를 선택할 수 있음 | PASS* | 잔액조회 keyboard-only 흐름 정상으로 사용자 확인 |
+| B-4 | Enter/Space로 잔액 조회 실행 | 마우스 없이 실행 가능 | PASS* | 잔액조회 keyboard-only 흐름 정상으로 사용자 확인 |
 | B-5 | API 오류 발생 | 오류 안내 영역 또는 재시도 버튼으로 이동 가능 | TODO | |
 | B-6 | 잔액 결과 표시 후 Tab | 결과 다시 듣기 등 이후 조작 요소 접근 가능 | TODO | |
 
@@ -118,8 +118,8 @@
 |---|---|---|---|---|
 | C-1 | Tab으로 출금 계좌 버튼 이동 | 각 계좌 버튼에 focus 가능 | TODO | |
 | C-2 | Space/Enter로 계좌 선택 | `aria-pressed` 상태가 변경됨 | TODO | |
-| C-3 | 받는 사람 버튼 이동 | 각 수취인 버튼에 focus 가능 | TODO | |
-| C-4 | Space/Enter로 수취인 선택 | 선택 상태가 시각적으로/상태값으로 반영 | TODO | |
+| C-3 | 받는 사람 버튼 이동 | 각 수취인 버튼에 focus 가능 | PASS | 사용자 직접 확인 |
+| C-4 | Space/Enter로 수취인 선택 | 선택 상태가 시각적으로/상태값으로 반영 | PASS | 사용자 직접 확인 |
 | C-5 | 금액 input 이동 | label과 연결된 input에 focus | TODO | |
 | C-6 | 금액 빠르게 추가 버튼 | 마우스 없이 +1만/+5만/+10만 사용 가능 | TODO | |
 | C-7 | 수취인 미선택 상태 제출 | 오류 alert로 focus 이동 | TODO | |
@@ -258,6 +258,24 @@ Impact: 화면을 보지 않는 사용자가 오류 발생 위치를 알기 어�
 Fix: role=alert 영역에 tabIndex=-1 + focus 이동
 Retest: PASS
 ```
+
+---
+
+## 8.1 Manual Test Log — 2026-09-18
+
+사용자가 실제 브라우저에서 keyboard-only 검증을 수행해 다음 결과를 확인했습니다.
+
+- Login
+  - Tab 순서 정상
+  - PIN 형식 오류 시 PIN 입력칸으로 focus 이동
+  - 전화번호 오류 시 전화번호 입력칸으로 focus 이동
+- Balance inquiry
+  - 핵심 keyboard-only 흐름 정상
+- Transfer
+  - 받는 사람 선택 정상
+
+> `PASS*`는 사용자가 해당 화면의 핵심 흐름을 정상으로 확인했지만, 세부 하위 항목별 독립 재현 기록은 아직 남기지 않은 항목입니다.  
+> 오류 상황, 200% zoom, VoiceOver/TalkBack 등 미검증 항목은 그대로 TODO로 유지합니다.
 
 ---
 
