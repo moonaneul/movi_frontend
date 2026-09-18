@@ -191,12 +191,12 @@
 
 | Screen | Result | Issue | Fix |
 |---|---|---|---|
-| Login | TODO | | |
-| Accounts | TODO | | |
-| Balance | TODO | | |
-| Transfer input | TODO | | |
-| Transfer review | TODO | | |
-| Transfer result | TODO | | |
+| Login | PASS | 문제 없음 | - |
+| Accounts | PASS | 문제 없음 | - |
+| Balance | PASS | 문제 없음 | - |
+| Transfer input | PASS | 문제 없음 | - |
+| Transfer review | PASS | 문제 없음 | - |
+| Transfer result | PASS | 문제 없음 | - |
 
 ---
 
@@ -274,8 +274,22 @@ Retest: PASS
 - Transfer
   - 받는 사람 선택 정상
 
-> `PASS*`는 사용자가 해당 화면의 핵심 흐름을 정상으로 확인했지만, 세부 하위 항목별 독립 재현 기록은 아직 남기지 않은 항목입니다.  
-> 오류 상황, 200% zoom, VoiceOver/TalkBack 등 미검증 항목은 그대로 TODO로 유지합니다.
+> `PASS*`는 사용자가 해당 화면의 핵심 흐름을 정상으로 확인했지만, 세부 하위 항목별 독립 재현 기록은 아직 남기지 않은 항목입니다.
+
+### 200% Zoom / Reflow
+
+사용자가 브라우저를 200% 확대해 다음 화면을 직접 확인했습니다.
+
+- Login — 정상
+- Accounts — 정상
+- Balance — 정상
+- Transfer input — 정상
+- Transfer review — 정상
+- Transfer result — 정상
+
+이번 수동 확인에서는 텍스트 겹침, 핵심 버튼 잘림, 핵심 기능을 놓치게 하는 가로 스크롤 등의 문제를 발견하지 못했습니다.
+
+> VoiceOver/TalkBack과 실제 시각장애 사용자 usability test는 아직 수행하지 않았습니다.
 
 ---
 
